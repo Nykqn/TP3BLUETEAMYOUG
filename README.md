@@ -1,91 +1,49 @@
-🛡️ TD-03 : Gestionnaire de Chiffrement & Exfiltration (Lab Cyber)
-Ce programme est un outil de simulation pédagogique (Ransomware Lab) conçu pour démontrer les mécanismes de génération de clés, de transfert sécurisé via SFTP et de chiffrement récursif de fichiers sur un système Linux (Ubuntu).
+# 🛡️ TD-03 : Gestionnaire de Chiffrement & Exfiltration (Lab Cyber)
 
-📋 Sommaire
-Fonctionnalités
+Ce programme est un outil de simulation pédagogique conçu pour démontrer les mécanismes de gestion de dépendances, de génération de clés sécurisées, de transfert SFTP et de chiffrement récursif sur système Linux.
 
-Structure du Projet
+---
 
-Installation
+## 📋 Sommaire
+- [Fonctionnalités](#-fonctionnalités)
+- [Structure du Projet](#-structure-du-projet)
+- [Installation](#-installation)
+- [Utilisation](#-utilisation)
+- [Conformité TD](#-conformité-td)
 
-Utilisation
+---
 
-Sécurité
+## ✨ Fonctionnalités
 
-✨ Fonctionnalités
-Partie A : Bootstrapping & Dépendances
-Vérification automatique de la version de Python (3.8+ requis).
+### 🏗️ Partie A : Bootstrapping
+- Vérification automatique de la version de Python (3.8+).
+- **Auto-réparation** : Installation automatisée des paquets système (`apt`) et des bibliothèques Python (`pip`) si l'environnement est vierge.
 
-Détection et installation automatisée des bibliothèques (cryptography, paramiko, tqdm) via apt ou pip.
+### 🎮 Partie B : Menu Interactif
+- Menu textuel structuré permettant de naviguer entre les différentes phases du lab.
+- Gestion robuste des erreurs de saisie et validation des chemins.
 
-Partie B : Interface Utilisateur
-Menu textuel interactif et robuste.
+### 🔑 Partie C : Cryptographie
+- Utilisation de l'algorithme **AES-128/256** (Fernet).
+- **Stockage sécurisé** : Les clés sont enregistrées dans `/var/keys/` avec des permissions restreintes (`chmod 600`), les rendant inaccessibles aux utilisateurs non-root.
 
-Validation des saisies utilisateur et gestion propre des erreurs.
 
-Partie C : Cryptographie
-Support de l'algorithme AES-128/256 (via Fernet).
 
-Stockage sécurisé des clés dans /var/keys/ avec permissions restreintes (chmod 600).
+### 🚀 Partie D : Transfert SFTP
+- Exfiltration de la clé vers un serveur distant via le protocole SSH/SFTP.
+- **Sécurité** : Saisie masquée du mot de passe (via `getpass`).
 
-Partie D : Exfiltration SFTP
-Transfert de la clé vers un serveur distant.
+### 🔒 Partie E & F : Chiffrement In-Place
+- Sélection de fichiers uniques ou de répertoires entiers.
+- **Récursivité** : Traitement automatique de tous les sous-dossiers.
+- **Interface** : Barre de progression `tqdm` pour le suivi en temps réel.
 
-Authentification sécurisée (identifiants masqués lors de la saisie).
+---
 
-Partie E & F : Chiffrement Avancé
-Chiffrement In-Place (remplacement direct des fichiers).
+## 📂 Structure du Projet
 
-Mode récursif pour traiter des arborescences complètes.
-
-Barre de progression visuelle pour le suivi des opérations.
-
-📂 Structure du Projet
-Plaintext
+```text
 .
-├── main.py              # Script principal (Interface & Logique)
-├── README.md            # Documentation du programme
-└── keys/                # Dossier local (si /var/keys/ est inaccessible)
-🚀 Installation
-Le programme est conçu pour être autonome. Sur une machine Ubuntu vierge, il suffit de cloner le script et de l'exécuter.
-
-Bash
-# Télécharger le script (exemple)
-git clone https://github.com/votre-compte/td03-ransom-lab.git
-cd td03-ransom-lab
-
-# Lancer le script avec les droits root (requis pour /var/keys)
-sudo python3 main.py
-🛠️ Utilisation
-1. Génération de Clé
-Sélectionnez l'option 1. Le script créera une clé sécurisée. Sous Linux, elle sera protégée contre la lecture par d'autres utilisateurs.
-
-2. Transfert SFTP
-Sélectionnez l'option 2. Vous devrez fournir :
-
-L'adresse IP du serveur de réception.
-
-Votre identifiant et mot de passe (ce dernier ne s'affichera pas à l'écran).
-
-Le chemin absolu de destination sur le serveur distant.
-
-3. Chiffrement
-Sélectionnez l'option 3.
-
-Fichier : Entrez le chemin complet (ex: /home/ubuntu/important.txt).
-
-Dossier : Entrez le chemin du dossier (ex: /home/ubuntu/data/). Tous les fichiers à l'intérieur seront chiffrés récursivement.
-
-🔒 Sécurité
-[!IMPORTANT] Ce programme est à usage strictement pédagogique.
-
-Aucun mot de passe n'est stocké en clair dans le code source.
-
-Permissions système : L'utilisation de /var/keys/ garantit que la clé de déchiffrement n'est accessible que par l'utilisateur root.
-
-Validation des chemins : Le script convertit automatiquement les chemins Windows (\) en syntaxe Linux (/) pour éviter les erreurs de saisie.
-
-⚖️ Licence
-Ce projet est réalisé dans le cadre d'un Travail Dirigé (TD) en cybersécurité.
-
-Une dernière chose à faire pour ton dépôt GitHub :
+├── main.py              # Script principal (contenant les parties A à F)
+├── README.md            # Documentation technique
+└── .gitignore           # Exclusion des clés et caches
