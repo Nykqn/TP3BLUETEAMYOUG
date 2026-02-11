@@ -47,3 +47,22 @@ Ce programme est un outil de simulation pédagogique conçu pour démontrer les 
 ├── main.py              # Script principal (contenant les parties A à F)
 ├── README.md            # Documentation technique
 └── .gitignore           # Exclusion des clés et caches
+
+```
+## 🚀 Installation
+
+Le script est conçu pour être totalement autonome. Pour le déployer sur un serveur Ubuntu :
+
+### 1. Création du fichier
+Utilisez un éditeur de texte (comme `nano`) pour créer le script :
+```bash
+nano main.py
+```
+# Collez le code source du script ici, puis faites CTRL+O (sauvegarder) et CTRL+X (quitter)
+
+### 2. Exécution
+Le script doit impérativement être lancé avec les privilèges **sudo** pour pouvoir créer le répertoire sécurisé `/var/keys/` et installer les dépendances système si nécessaire :
+
+```bash
+sudo python3 main.py
+```
