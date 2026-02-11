@@ -66,3 +66,27 @@ Le script doit impérativement être lancé avec les privilèges **sudo** pour p
 ```bash
 sudo python3 main.py
 ```
+## 🛠️ Utilisation
+
+* **Génération (Option 1)** : Créez une clé de test. Elle sera générée selon l'algorithme choisi et protégée par des permissions restrictives au niveau du système de fichiers.
+* **Exfiltration (Option 2)** : Transférez la clé sur votre machine de réception via le protocole SFTP pour simuler une fuite de données (identifiants demandés de manière interactive).
+* **Chiffrement (Option 3)** : Indiquez le chemin d'un fichier ou d'un dossier. Le script effectuera un chiffrement récursif in-place (remplacement des fichiers originaux).
+
+---
+
+## ✅ Conformité TD
+
+| Partie | Libellé | État |
+| :--- | :--- | :--- |
+| **A** | Vérification Dépendances & Auto-install | 🆗 Validé |
+| **B** | Menu Principal Interactif | 🆗 Validé |
+| **C** | Génération Clés & Permissions `/var/keys/` | 🆗 Validé |
+| **D** | Transfert SFTP (Identifiants masqués) | 🆗 Validé |
+| **E** | Sélection Fichiers/Dossiers & Chiffrement In-Place | 🆗 Validé |
+| **F** | Récursivité & Barre de Progression | 🆗 Validé |
+
+---
+
+## ⚠️ Avertissement
+
+Ce projet est réalisé dans un cadre **strictement pédagogique**. L'objectif est de comprendre les méthodes de défense en analysant les vecteurs d'attaque. L'auteur décline toute responsabilité en cas d'usage inapproprié ou malveillant du code fourni.
